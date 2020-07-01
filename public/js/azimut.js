@@ -301,6 +301,7 @@ var i = 0;
 (function loop() {
     document.getElementById("azimut").innerHTML = '<b>Piso 5:</b> '+ r[i].d + ' - Valor: ' + r[i].v;
     if (++i < r.length) {
+        if(i==r.length - 1) i = 0;
         setTimeout(loop, 1000); // call myself in 1 second time if required
     }
 })();
