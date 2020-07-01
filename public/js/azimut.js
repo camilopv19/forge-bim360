@@ -299,7 +299,7 @@ function history(token) {
 
 var i = 0;
 (function loop() {
-    document.getElementById("azimut").innerHTML = r[i].d + ' - Valor: ' + r[i].v;
+    document.getElementById("azimut").innerHTML = '<b>Piso 5: '+ r[i].d + ' - Valor: ' + r[i].v;
     if (++i < r.length) {
         setTimeout(loop, 1000); // call myself in 1 second time if required
     }
