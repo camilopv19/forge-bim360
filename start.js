@@ -20,7 +20,7 @@ const path = require('path');
 const express = require('express');
 const cookieSession = require('cookie-session');
 
-console.log(process.env);
+console.log(process.env.FORGE_CALLBACK_URL);
 const PORT = process.env.PORT || 3000;
 const config = require('./config');
 if (config.credentials.client_id == null || config.credentials.client_secret == null) {

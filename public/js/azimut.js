@@ -248,8 +248,8 @@ const body = JSON.stringify({
 });
 
 // History: GET --> {json}
-// let start = moment().subtract(300, 'minute').format('YYYY-MM-DDTHH:mm:ss');
-// let end = moment().format('YYYY-MM-DDTHH:mm:ss');
+let start = moment().subtract(300, 'minute').format('YYYY-MM-DDTHH:mm:ss');
+let end = moment().format('YYYY-MM-DDTHH:mm:ss');
 // let piso5 = "5dfb91044c6618853f236f1b";
 // let piso7 = "5dfb95655a26247b69757a59";
 // let hUrl = `https://ems.api.azimutenergia.co/charts/history?msr[ids][$in]=${piso5}&dat[stt][$gte]=${start}&dat[end][$lte]=${end}&var=act_pwr&gty=minute&gty[apx]=5&organization_id=25`;
@@ -296,6 +296,18 @@ function history(token) {
 
 // getToken();
 
+
+(function(){
+    $.ajax({
+        url,
+        data: body, 
+        crossDomain: true,
+        headers: {
+            'contentType': 'application/json'
+        }, success: function(result){
+      console.log(result);
+    }});
+  })();
 
 var i = 0;
 (function loop() {

@@ -37,6 +37,10 @@ body {
 }
 
 .navbar-default {
-  background-color: #000;
+  background-color: white;
   border-color: #e7e7e7;
+}
+
+.panel {
+  padding-top: 10px;
 }
