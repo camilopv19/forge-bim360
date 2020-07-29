@@ -23,8 +23,8 @@
   <!--Chart JS  packages-->
 <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" ></script>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" />
-<script src="js/Dashboard/PanelBarChart.js"></script>
-<!-- <script src="js/Dashboard/PanelPieChart.js"></script> -->
+<!-- <script src="js/Dashboard/PanelBarChart.js"></script>
+<script src="js/Dashboard/PanelPieChart.js"></script> -->
 
 <!--Node JS  packages-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
@@ -37,8 +37,8 @@
     <div class="container-fluid">
       <ul class="nav navbar-nav left">
         <li>
-          <a href="https://iddconconcreto.com/" target="_blank">
-            <img alt="IDD Conconcreto" src="images/Logo_Pactia.png" height="40">
+          <a href="https://pactia.com//" target="_blank">
+            <img alt="Pactia" src="images/Logo_Pactia.png" height="40">
           </a>
         </li>
       </ul>
@@ -46,7 +46,7 @@
   </nav>
   <!-- End of navbar -->
   <div class="container-fluid fill">
-    <div class="row fill">
+    <div class="row transition-width">
       <div class="col-sm-4 fill">
         <div class="panel panel-default fill">
           <div class="panel-heading" data-toggle="tooltip" style="padding: 0px;">
@@ -68,7 +68,28 @@
           </div>
         </div>
       </div>
-      <div ><h3 id="azimut">Medidas</h3></div>
+      <div class="panel">
+        <div class="btn-group">
+          <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Pisos <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="listElement" id="p5">Piso 5</a></li>
+            <li><a class="listElement" id="p6">Piso 6</a></li>
+            <li><a class="listElement" id="p7">Piso 7</a></li>
+            <li><a class="listElement" id="p8">Piso 8</a></li>
+            <li><a class="listElement" id="p9">Piso 9</a></li>
+            <li><a class="listElement" id="p10">Piso10 </a></li>
+            <li><a class="listElement" id="p11">Piso11 </a></li>
+            <li><a class="listElement" id="p12">Piso12 </a></li>
+            <li><a class="listElement" id="p13">Piso13 </a></li>
+            <li><a class="listElement" id="p14">Piso14 </a></li>
+            <li><a class="listElement" id="p15_1">Piso15 T1 </a></li>
+            <li><a class="listElement" id="p15_2">Piso15 T2 </a></li>
+            <li><a class="listElement" id="p16">Piso16 </a></li>
+          </ul>
+        </div>
+        <h4 id="azimut">Medidas</h4></div>
       <div class="col-sm-8 fill">
         <div id="forgeViewer"></div>
       </div>

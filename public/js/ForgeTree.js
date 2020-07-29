@@ -43,6 +43,8 @@ $(document).ready(function () {
       // finally:
       prepareUserHubsTree();
       showUser();
+      // let initialID = 'https://developer.api.autodesk.com/data/v1/projects/b.0e834092-1cf2-44a3-bb5f-af9aa9544fd1/items/urn:adsk.wipprod:dm.lineage:0OrbLkelQUGu_vwN90FHBg';
+      // $('#userHubs').jstree('select_node', initialID);
     }
   });
 
@@ -67,6 +69,7 @@ function prepareUserHubsTree() {
         'cache': false,
         'data': function (node) {
           $('#userHubs').jstree(true).toggle_node(node);
+          // console.log(node); // Usado para quemar un nodo del arbol en especial y poder dirigir el visor directamente
           return { "id": node.id };
         }
       }
