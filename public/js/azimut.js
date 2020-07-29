@@ -22,23 +22,39 @@ const pisos = {
     p16 : { id: '5df00efe748d27a793c38929', name: 'Piso 16'}
 };
 
+const sensores = {
+    s1: { id: 'act_ene', name: 'Energía'},
+    s2: { id: 'act_pwr', name: 'Potencia'}
+};
+
 let data = [];
 let i = 0;
 let out_name = '';
+let txtPiso = '';
+let sensor = 's1';
+
 
 $(document).ready(function () {
 
     $('.listElement').click(function () {
         let piso = $(this).attr('id');
-        getToken(pisos[piso]);
+        document.getElementById("piso").innerHTML = piso;
+        sensor = document.getElementById("sensor").innerHTML;
+        getToken(pisos[piso], sensores[sensor]);
+    });
+    $('.sensor').click(function () {
+        sensor = $(this).attr('id');
+        document.getElementById("sensor").innerHTML = sensor;
+        txtPiso = document.getElementById("piso").innerHTML;
+        getToken(pisos[txtPiso], sensores[sensor]);
     });
 })
 
-function getToken(piso) {
+function getToken(piso, sensor) {
     out_name = piso.name;
     let start = moment().subtract(300, 'minute').format('YYYY-MM-DDTHH:mm:ss');
     let end = moment().format('YYYY-MM-DDTHH:mm:ss');
-    let hUrl = `https://ems.api.azimutenergia.co/charts/history?msr[ids][$in]=${piso.id}&dat[stt][$gte]=${start}&dat[end][$lte]=${end}&var=act_pwr&gty=minute&gty[apx]=5&organization_id=25`;
+    let hUrl = `https://ems.api.azimutenergia.co/charts/history?msr[ids][$in]=${piso.id}&dat[stt][$gte]=${start}&dat[end][$lte]=${end}&var=${sensor.id}&gty=minute&gty[apx]=5&organization_id=25`;
 
     var options = {
         url,
@@ -73,7 +89,7 @@ function history(token, hUrl) {
 }
 
 function loop() {
-    document.getElementById("azimut").innerHTML = `<b>${out_name}:</b> ${data[i].d} </br><b>Potencia activa: </b>${data[i].v} `;
+    document.getElementById("azimut").innerHTML = `<b>${out_name}:</b> ${data[i].d} </br><b>${sensores[sensor].name} activa: </b>${data[i].v} `;
     if (++i < data.length) {
         if (i == data.length - 1) i = 0;
         setTimeout(loop, 1000); // call myself in 1 second time if required

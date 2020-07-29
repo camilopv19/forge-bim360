@@ -4,7 +4,8 @@
 <head>
   <title>Smart Building</title>
   <meta charset="utf-8" />
-  <link rel="shortcut icon" href="https://github.com/Autodesk-Forge/learn.forge.viewhubmodels/raw/master/img/favicon.ico">
+  <link rel="shortcut icon"
+    href="https://github.com/Autodesk-Forge/learn.forge.viewhubmodels/raw/master/img/favicon.ico">
   <!-- Common packages: jQuery, Bootstrap, jsTree -->
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -12,7 +13,8 @@
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.7/themes/default/style.min.css" />
   <!-- Autodesk Forge Viewer files -->
-  <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/style.min.css" type="text/css">
+  <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/style.min.css"
+    type="text/css">
   <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/viewer3D.min.js"></script>
   <!-- this project files -->
   <link href="css/main.css" rel="stylesheet" />
@@ -21,13 +23,13 @@
   <script src="js/Dashboard/Dashboard.js"></script>
   <script src="js/Dashboard/DashboardPanel.js"></script>
   <!--Chart JS  packages-->
-<script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" ></script>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" />
-<!-- <script src="js/Dashboard/PanelBarChart.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" />
+  <!-- <script src="js/Dashboard/PanelBarChart.js"></script>
 <script src="js/Dashboard/PanelPieChart.js"></script> -->
 
-<!--Node JS  packages-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+  <!--Node JS  packages-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
 
 </head>
 
@@ -51,18 +53,21 @@
         <div class="panel panel-default fill">
           <div class="panel-heading" data-toggle="tooltip" style="padding: 0px;">
             <span id="userInfo"></span>
-            <span id="refreshHubs" class="glyphicon glyphicon-refresh" style="cursor: pointer; display: none" title="Refresh list of files"></span>
-            <span id="signOut" class="glyphicon glyphicon-log-out" style="margin-top:5px;cursor: pointer; float: right; display: none" title="Sign out"> </span>
+            <span id="refreshHubs" class="glyphicon glyphicon-refresh" style="cursor: pointer; display: none"
+              title="Refresh list of files"></span>
+            <span id="signOut" class="glyphicon glyphicon-log-out"
+              style="margin-top:5px;cursor: pointer; float: right; display: none" title="Sign out"> </span>
           </div>
           <div id="userHubs">
             <div style="padding-top: 100px; text-align: center;">
               <button class="btn btn-lg btn-default" id="autodeskSigninButton">
-                <img src="https://github.com/Autodesk-Forge/bim360appstore-data.management-nodejs-transfer.storage/raw/master/www/img/autodesk_text.png"
+                <img
+                  src="https://github.com/Autodesk-Forge/bim360appstore-data.management-nodejs-transfer.storage/raw/master/www/img/autodesk_text.png"
                   height="20"> Sign in
               </button>
-              <br/>
-              <br/>
-              <br/> You may also need to provision your<br/> BIM 360 Docs account for this app.<br/>
+              <br />
+              <br />
+              <br /> You may also need to provision your<br /> BIM 360 Docs account for this app.<br />
               <a href="https://forge.autodesk.com/blog/bim-360-docs-provisioning-forge-apps">Learn more</a>.
             </div>
           </div>
@@ -70,7 +75,8 @@
       </div>
       <div class="panel">
         <div class="btn-group">
-          <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
             Pisos <span class="caret"></span>
           </button>
           <ul class="dropdown-menu">
@@ -89,7 +95,23 @@
             <li><a class="listElement" id="p16">Piso16 </a></li>
           </ul>
         </div>
-        <h4 id="azimut">Medidas</h4></div>
+        <div class="btn-group">
+          <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false"> Tipo de medida <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="sensor" id="s1">Energía Activa</a></li>
+            <li><a class="sensor" id="s2">Potencia Activa</a></li>
+          </ul>
+        </div>
+        <div class="btn-group">
+          <a href="https://runtime.lappiz.io/" class="btn btn-info" target="_blank">Pactia+</a>
+        </div>
+
+        <h4 id="azimut">Elija un piso</h4>
+        <p id="piso" hidden>p5</p>
+        <p id="sensor" hidden>s1</p>
+      </div>
       <div class="col-sm-8 fill">
         <div id="forgeViewer"></div>
       </div>
@@ -99,4 +121,5 @@
 <!-- <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script> -->
 <script type="module" src="js/azimut.js"></script>
 <iframe id="hiddenFrame" style="visibility: hidden; display: none" />
+
 </html>
