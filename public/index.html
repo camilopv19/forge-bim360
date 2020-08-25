@@ -15,11 +15,14 @@
   <!-- Autodesk Forge Viewer files -->
   <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/style.min.css"
     type="text/css">
-  <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/viewer3D.min.js"></script>
+  <!-- <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/viewer3D.min.js"></script> -->
+  <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/6.*/viewer3D.min.js"></script>
   <!-- this project files -->
   <link href="css/main.css" rel="stylesheet" />
   <script src="js/ForgeTree.js"></script>
   <script src="js/ForgeViewer.js"></script>
+  <script src="js/Extensions/Props.js"></script>
+  <script src="js/Extensions/uiButtons.js"></script>
   <script src="js/Dashboard/Dashboard.js"></script>
   <script src="js/Dashboard/DashboardPanel.js"></script>
   <!--Chart JS  packages-->
@@ -37,11 +40,20 @@
   <!-- Fixed navbar by Bootstrap: https://getbootstrap.com/examples/navbar-fixed-top/ -->
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-      <ul class="nav navbar-nav left">
+      <ul class="nav nav-tabs nav-justified">
         <li>
           <a href="https://pactia.com//" target="_blank">
-            <img alt="Pactia" src="images/Logo_Pactia.png" height="40">
+            <img alt="Pactia" src="images/Logo_Pactia.png" class="pLogo">
+            <!-- <img alt="Pactia" src="images/Logo_Pactia.png" height="40"> -->
           </a>
+        </li>
+        <li class="nav-item">
+          <a href="https://runtime.lappiz.io/" class="nav-link" target="_blank">Pactia+</a>
+        </li>
+        <li class="nav-item">
+
+          <a class="nav-link" id="powerbi">Indicadores</a>
+
         </li>
       </ul>
     </div>
@@ -52,7 +64,7 @@
       <div class="col-sm-4 fill">
         <div class="panel panel-default fill">
           <div class="panel-heading" data-toggle="tooltip" style="padding: 0px;">
-            <span id="userInfo"></span>
+            <span id="userInfo" style="padding-left: 5px;"></span>
             <span id="refreshHubs" class="glyphicon glyphicon-refresh" style="cursor: pointer; display: none"
               title="Refresh list of files"></span>
             <span id="signOut" class="glyphicon glyphicon-log-out"
@@ -71,55 +83,29 @@
               <a href="https://forge.autodesk.com/blog/bim-360-docs-provisioning-forge-apps">Learn more</a>.
             </div>
           </div>
+          <!-- <button id="expande">Expandir</button> -->
         </div>
-      </div>
-      <div class="panel">
-        <div class="btn-group">
-          <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false">
-            Pisos <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu">
-            <li><a class="listElement" id="p5">Piso 5</a></li>
-            <li><a class="listElement" id="p6">Piso 6</a></li>
-            <li><a class="listElement" id="p7">Piso 7</a></li>
-            <li><a class="listElement" id="p8">Piso 8</a></li>
-            <li><a class="listElement" id="p9">Piso 9</a></li>
-            <li><a class="listElement" id="p10">Piso10 </a></li>
-            <li><a class="listElement" id="p11">Piso11 </a></li>
-            <li><a class="listElement" id="p12">Piso12 </a></li>
-            <li><a class="listElement" id="p13">Piso13 </a></li>
-            <li><a class="listElement" id="p14">Piso14 </a></li>
-            <li><a class="listElement" id="p15_1">Piso15 T1 </a></li>
-            <li><a class="listElement" id="p15_2">Piso15 T2 </a></li>
-            <li><a class="listElement" id="p16">Piso16 </a></li>
-          </ul>
-        </div>
-        <div class="btn-group">
-          <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false"> Tipo de medida <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu">
-            <li><a class="sensor" id="s1">Energía Activa</a></li>
-            <li><a class="sensor" id="s2">Potencia Activa</a></li>
-          </ul>
-        </div>
-        <div class="btn-group">
-          <a href="https://runtime.lappiz.io/" class="btn btn-info" target="_blank">Pactia+</a>
-        </div>
-
-        <h4 id="azimut">Elija un piso</h4>
-        <p id="piso" hidden>p5</p>
-        <p id="sensor" hidden>s1</p>
       </div>
       <div class="col-sm-8 fill">
         <div id="forgeViewer"></div>
+        <div class="my-custom-ui">
+          <div><b><span id="txt"></span> </b><span class="lvl" id="currSelect"></span></div>
+          <div><span id="ea"></span> <span class="lvl" id="eav"></span></div>
+          <div><span id="pa"></span> <span class="lvl" id="pav"></span></div>
+        </div>
+          <div>
+          <div id="indicadores" hidden>
+          <div><span id="fecha"></span> <span class="lvl" id="fechacap"></span></div>
+              <!-- width="1140" height="541.25" -->
+              <iframe class="dashboardPanel fill"
+                src="https://app.powerbi.com/reportEmbed?reportId=dc89ea5f-6218-4f0e-9acd-21e1f4593b48&autoAuth=true&ctid=6503c5d1-70bc-437f-a0b6-a7849af8c68c&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLXNvdXRoLWNlbnRyYWwtdXMtcmVkaXJlY3QuYW5hbHlzaXMud2luZG93cy5uZXQvIn0%3D"
+                frameborder="0" allowFullScreen="true"></iframe>
+            </div>
+        </div>
       </div>
-    </div>
-  </div>
 </body>
-<!-- <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script> -->
-<script type="module" src="js/azimut.js"></script>
+<script type="module" src="js/services/azimut.js"></script>
+<script type="module" src="js/buttons.js"></script>
 <iframe id="hiddenFrame" style="visibility: hidden; display: none" />
 
 </html>

@@ -12,8 +12,8 @@ class DashboardPanelChart extends DashboardPanel {
     load(parentDivId, divId, viewer, modelData) {
         if (!modelData.hasProperty(this.propertyToUse)){
             alert('This model does not contain a ' + this.propertyToUse +' property for the ' + this.constructor.name);
-            console.log('These are the properties available on this model: ');
-            console.log(Object.keys(modelData._modelData));
+            // console.log('These are the properties available on this model: ');
+            // console.log(Object.keys(modelData._modelData));
             return false;
         } 
         divId = this.propertyToUse.replace(/[^A-Za-z0-9]/gi, '') + divId; // div name = property + chart type
@@ -51,7 +51,7 @@ class ModelData {
                 viewer.getProperties(dbId, function (props) {
                     props.properties.forEach(function (prop) {
                         if (!isNaN(prop.displayValue)) return; // let's not categorize properties that store numbers
-
+                        
                         // some adjustments for revit:
                         prop.displayValue = prop.displayValue.replace('Revit ', ''); // remove this Revit prefix
                         if (prop.displayValue.indexOf('<') == 0) return; // skip categories that start with <

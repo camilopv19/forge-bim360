@@ -16,8 +16,7 @@
 // UNINTERRUPTED OR ERROR FREE.
 /////////////////////////////////////////////////////////////////////
 
-var viewer;
-
+var viewerApp;
 // @urn the model to show
 // @viewablesId which viewables to show, applies to BIM 360 Plans folder
 function launchViewer(urn, viewableId) {
@@ -27,47 +26,35 @@ function launchViewer(urn, viewableId) {
     api: 'derivativeV2' + (atob(urn.replace('_', '/')).indexOf('emea') > -1 ? '_EU' : '') // handle BIM 360 US and EU regions
   };
 
+  var config3d = {
+    extensions: ['PropertyInspectorExtension', 'uiButtons']
+  };
+
   Autodesk.Viewing.Initializer(options, () => {
-    viewer = new Autodesk.Viewing.GuiViewer3D(document.getElementById('forgeViewer'));
-    viewer.start();
+    viewerApp = new Autodesk.Viewing.ViewingApplication('forgeViewer');
+    viewerApp.registerViewer(viewerApp.k3D, Autodesk.Viewing.Private.GuiViewer3D, config3d);
+
     var documentId = 'urn:' + urn;
-    Autodesk.Viewing.Document.load(documentId, onDocumentLoadSuccess, onDocumentLoadFailure);
+    viewerApp.loadDocument(documentId, onDocumentLoadSuccess, onDocumentLoadFailure);
   });
 
   function onDocumentLoadSuccess(doc) {
-    // if a viewableId was specified, load that view, otherwise the default view
-    var viewables = (viewableId ? doc.getRoot().findByGuid(viewableId) : doc.getRoot().getDefaultGeometry());
-    viewer.loadDocumentNode(doc, viewables).then(i => {
-      viewer.loadExtension("Autodesk.VisualClusters");
-      viewer.loadExtension('Autodesk.Hyperlink');
-      viewer.loadExtension("Autodesk.PDF");
-      viewer.loadExtension('Autodesk.DocumentBrowser');
-      viewer.loadExtension('Autodesk.Geolocation');
-      viewer.loadExtension('Autodesk.CrossFadeEffects');
-      viewer.loadExtension('Autodesk.Edit2D');
-      viewer.loadExtension('Autodesk.ViewCubeUi');
-      viewer.loadExtension('Autodesk.BIM360.GestureDocumentNavigation');
-      viewer.loadExtension('Autodesk.BIM360.RollCamera');
-      viewer.loadExtension('Autodesk.Viewing.SceneBuilder');
-      viewer.loadExtension('Autodesk.Snapping');
-      viewer.loadExtension('Autodesk.Viewing.Popout');
-      viewer.loadExtension('Autodesk.Viewing.ZoomWindow');
-      viewer.loadExtension('Autodesk.Viewing.Wireframes');
-      viewer.loadExtension('Autodesk.Section');
-      viewer.loadExtension('Autodesk.DefaultTools.NavTools');
-      viewer.loadExtension('Autodesk.Measure');
-      viewer.loadExtension('Autodesk.Viewing.FusionOrbit');
-      viewer.loadExtension('Autodesk.BimWalk');
-      viewer.loadExtension('Autodesk.GoHome');
-      viewer.loadExtension('Autodesk.Explode');
-      viewer.loadExtension('Autodesk.FullScreen');
-      viewer.loadExtension('Autodesk.LayerManager');
-      viewer.loadExtension('Autodesk.ModelStructure');
-      viewer.loadExtension('Autodesk.PropertiesManager');
-      viewer.loadExtension('Autodesk.ViewerSettings');
-      //viewer.loadExtension('Autodesk.BIM360.Minimap');
-      // any additional action here?
+    viewables = viewerApp.bubble.search({
+      'type': 'geometry'
     });
+    if (viewables.length === 0) {
+      console.error('Document contains no viewables.');
+      return;
+    }
+    viewerApp.selectItem(viewables[0].data, onItemLoadSuccess, onItemLoadFail);
+  }
+
+  function onItemLoadSuccess(viewer, item) {
+
+  }
+
+  function onItemLoadFail(errorCode) {
+    console.error('onItemLoadFail() - errorCode:' + errorCode);
   }
 
   function onDocumentLoadFailure(viewerErrorCode) {

@@ -8,7 +8,8 @@
 }
 
 body {
-  padding-top: 60px; /* space for the top nav bar */
+   padding-top: 60px; /*space for the top nav bar */
+   padding-bottom: 5px; /*space for the top nav bar */
   margin-right: 30px;
 }
 
@@ -42,5 +43,49 @@ body {
 }
 
 .panel {
-  padding-top: 10px;
+  padding-top: 2px;
+}
+
+.pLogo{
+  height: 18px;
+}
+
+a{
+  cursor: pointer;
+}
+
+.my-custom-ui span.lvl {
+  color: navy;
+}
+
+.my-custom-ui {
+  position: absolute;
+  top: 500;
+  left: 500;
+  z-index: 5;
+  margin: .3em;
+  padding: .3em;
+  font-size: 18px;
+  font-family: "Artifakt Element", "Open Sans", Helvetica, Arial, sans-serif;
+  border-radius: 6px;
+}
+
+/* ICONS */
+.pactia {
+  background-image: url('../images/p+.png');
+  background-size: 100%;
+}
+
+.energy {
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAADWklEQVR4XuWbMWgUURCG/zk1phCxiBYiWChCtLWQWHgb1NukEiUIWpvCToKNVRobi2AjiL0WR0BBwu0JZk9BEWtBCzGFnblISoPgyEWCGi7ZeW/mbe7dpc3/v535eJn8c+wRBvyHBrx/BAfAjeQyCA8BHHSE3QbTNE0sPnX0OcmDAuC8ug9r9BXAAaeq/oqXKc0PeXpFtrAAGslNEB6IKukualOau94cp8cFA8CzsxWcefURwAmniv4Xz1Gazyj8hdZwABrJJAgLhRVsJyAepVrrk+qMAnM4AFn1BUAXFMW/pjQ/p/CLrEEAcJacAvBBVMHWouuU5k+UZxTaQwF4BOBG4dO3FqxgLx+hpPVDcYbIag6An1dHsGf9X9+wqILuouDDb+Ox9gCy5A6Au4rmgRKGXxAAXJ8awv72EoDDCgClDL8wALLkGoDHiuY71lKGnzkAZhCy5D0IpxUASht+9gCa42NgfqNovmMtbfgFAJDUwZhSAShx+JkC4IXxo9jFXwBUFABKHX62AJrJPTBuK5ovffiZATDY+Tu1lD787ADod/4dGX4mAIx2/lKT3+Y/U1UUZoudXzk4utiXQTxNtdYzydE6APqdX1Kjj0b8WaI3AKOd36c5iacUANqdX9KIn4YxQxP5nMTsdQOMdn5JfT6aJfwaHqXJxprE7AfAYueXVOenuUppXpdanQEY7fzS+tx0hHe4mI8RgaVGdwA2O7+0Pjcd0VmqLb51MTkBMNr5XeqTa5nmaWLReRt1A2Cz88ubkit/AnyS0tZnueWP0hGAwc7vWqFIz/cpbd0SSTeJxACMdn6fGos8q8DQMUqb34uE3X4vB2Cz8/vUuL3HIfToAGTJMoAR+w5UJzqFnn4E4BR6tACuAOuvuvTGLfAIPSoAqovaxcxZIk5rXZ/tEXr6B4Bn6OkXAN6hp08A+IeefgCgCj3xA1CGntgBqENP7ADUoSdeAEahJ2IA7p/0SIObeBuUHijViZOgYeiJ8QaYhp4IAdiGntgAmIeeuAAECD0xAQgSemICECT0xAEgYOiJBEC40NP7AAKHnl4HEDz09DiA8KGn1wB8++fbpKvYXTlO51+uSHcJK93OLUPN6iUwdd4z6rwnKH6tzarxjXN2DIB1I77nDTyA313oclCo5nE/AAAAAElFTkSuQmCC');
+  background-size: 100%;
+}
+
+.sostenibilidad {
+  background-image: url('https://image.flaticon.com/icons/svg/1598/1598431.svg');
+  background-size: 100%;
+}
+.pisos {
+  background-image: url('https://www.flaticon.com/premium-icon/icons/svg/1841/1841738.svg');
+  background-size: 100%;
 }

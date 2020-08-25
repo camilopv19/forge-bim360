@@ -4,23 +4,30 @@ $(document).ready(function () {
             // to make sure we get the viewer, let's use the global var NOP_VIEWER
             if (NOP_VIEWER === null || NOP_VIEWER === undefined) return;
             new Dashboard(NOP_VIEWER, [
-                new BarChart('Category'),
+                // new BarChart('Category'),
                 // new PieChart('Category')
             ])
         }
     });
+
 })
 
 // Handles the Dashboard panels
 class Dashboard {
     constructor(viewer, panels) {
+        var viewerApp;
         var _this = this;
         this._viewer = viewer;
         this._panels = panels;
-        this.adjustLayout();
+        // this.adjustLayout();
         this._viewer.addEventListener(Autodesk.Viewing.GEOMETRY_LOADED_EVENT, (viewer) => {
             _this.loadPanels();
         });
+
+        this._viewer.addEventListener(Autodesk.Viewing.ISOLATE_EVENT, function(ev) {
+            // console.log(this._viewer.getIsolatedNodes());
+        });
+
     }
 
     adjustLayout() {
@@ -29,10 +36,10 @@ class Dashboard {
         // columns so it can fit the new dashboard column, also we added a smooth transition css class for a better user experience
         var row = $(".row").children();
         $(row[0]).removeClass('col-sm-4').addClass('col-sm-2 transition-width');
-        $(row[1]).removeClass('col-sm-8').addClass('col-sm-7 transition-width').after('<div class="col-sm-3 transition-width" id="dashboard"></div>');
+        $(row[1]).removeClass('col-sm-8').addClass('col-sm-7 transition-width').after('<div class="col-sm-3 transition-width" id="forgeViewer"></div>');
     }
 
-    loadPanels () {
+    loadPanels() {
         var _this = this;
         var data = new ModelData(this);
         data.init(function () {
@@ -44,3 +51,4 @@ class Dashboard {
         });
     }
 }
+

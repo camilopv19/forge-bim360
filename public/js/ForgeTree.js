@@ -42,7 +42,8 @@ $(document).ready(function () {
 
       // finally:
       prepareUserHubsTree();
-      showUser();
+      showUser(); //Ajax para cargar la imagen de perfil: Logo de la cuenta de BIM = Conconcreto
+      // urn:dXJuOmFkc2sud2lwcHJvZDpmcy5maWxlOnZmLjBPcmJMa2VsUVVHdV92d045MEZIQmc_dmVyc2lvbj0x  -->Estructura BURO 4.0
       // let initialID = 'https://developer.api.autodesk.com/data/v1/projects/b.0e834092-1cf2-44a3-bb5f-af9aa9544fd1/items/urn:adsk.wipprod:dm.lineage:0OrbLkelQUGu_vwN90FHBg';
       // $('#userHubs').jstree('select_node', initialID);
     }
@@ -69,7 +70,7 @@ function prepareUserHubsTree() {
         'cache': false,
         'data': function (node) {
           $('#userHubs').jstree(true).toggle_node(node);
-          // console.log(node); // Usado para quemar un nodo del arbol en especial y poder dirigir el visor directamente
+          // console.log(node); // Usado para quemar un nodo del arbol en especial y poder dirigir el visor directamente en la línea 48
           return { "id": node.id };
         }
       }
@@ -105,6 +106,7 @@ function prepareUserHubsTree() {
   }).bind("activate_node.jstree", function (evt, data) {
     if (data != null && data.node != null && (data.node.type == 'versions' || data.node.type == 'bim360documents')) {
       // in case the node.id contains a | then split into URN & viewableId
+      console.log(data.node.id);
       if (data.node.id.indexOf('|') > -1) {
         var urn = data.node.id.split('|')[1];
         var viewableId = data.node.id.split('|')[2];
@@ -118,11 +120,11 @@ function prepareUserHubsTree() {
 }
 
 function showUser() {
-  jQuery.ajax({
-    url: '/api/forge/user/profile',
-    success: function (profile) {
-      var img = '<img src="' + profile.picture + '" height="30px">';
-      $('#userInfo').html(img + profile.name);
-    }
-  });
+  // jQuery.ajax({
+  //   url: '/api/forge/user/profile',
+  //   success: function (profile) {
+  //     var img = '<img src="' + profile.picture + '" height="30px">';
+      $('#userInfo').html('Proyectos BIM');
+  //   }
+  // });
 }

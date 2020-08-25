@@ -23,8 +23,8 @@ const pisos = {
 };
 
 const sensores = {
-    s1: { id: 'act_ene', name: 'Energía'},
-    s2: { id: 'act_pwr', name: 'Potencia'}
+    s1: { id: 'act_ene', name: 'Energía', unit: 'kWh'},
+    s2: { id: 'act_pwr', name: 'Potencia', unit: 'kW'}
 };
 
 let data = [];
@@ -52,7 +52,7 @@ $(document).ready(function () {
 
 function getToken(piso, sensor) {
     out_name = piso.name;
-    let start = moment().subtract(300, 'minute').format('YYYY-MM-DDTHH:mm:ss');
+    let start = moment().subtract(30, 'minute').format('YYYY-MM-DDTHH:mm:ss');
     let end = moment().format('YYYY-MM-DDTHH:mm:ss');
     let hUrl = `https://ems.api.azimutenergia.co/charts/history?msr[ids][$in]=${piso.id}&dat[stt][$gte]=${start}&dat[end][$lte]=${end}&var=${sensor.id}&gty=minute&gty[apx]=5&organization_id=25`;
 
@@ -89,7 +89,7 @@ function history(token, hUrl) {
 }
 
 function loop() {
-    document.getElementById("azimut").innerHTML = `<b>${out_name}:</b> ${data[i].d} </br><b>${sensores[sensor].name} activa: </b>${data[i].v} `;
+    document.getElementById("azimut").innerHTML = `<b>${out_name}:</b> ${data[i].d} </br><b>${sensores[sensor].name} activa: </b>${data[i].v} ${sensores[sensor].unit}`;
     if (++i < data.length) {
         if (i == data.length - 1) i = 0;
         setTimeout(loop, 1000); // call myself in 1 second time if required
